@@ -1,0 +1,44 @@
+server:
+  port: 28080
+  servlet:
+    session:
+      timeout: 7200
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/city_dt
+    username: postgres
+    password: postgres
+    platform: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+    database-platform:
+      org.hibernate.spatial.dialect.postgis.PostgisDialect
+
+  devtools:
+    restart:
+      enabled: false
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+
+logging:
+  level:
+    org.hibernate.SQL: info
+    org.hibernate.type: info
+
+geometry:
+  srid: 3857
