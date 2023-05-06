@@ -1,6 +1,5 @@
-package com.example.mybatis.mapper.repo;
+package com.example.mybatis.mapper;
 
-import com.example.mybatis.mapper.vo.BoardVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

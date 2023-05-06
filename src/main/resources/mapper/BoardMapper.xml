@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    [템플릿 설명]
+    - 해당 파일은 SQL 문을 작성하는 곳입니다.
+-->
+<mapper namespace="com.example.mybatis.mapper.BoardMapper">
+
+    <select id="selectBoardList" resultType="com.example.mybatis.mapper.BoardVO">
+        SELECT id,
+               test1,
+               test2
+        FROM Board;
+    </select>
+
+    <select id="selectBoardById" resultType="com.example.mybatis.mapper.BoardVO">
+        SELECT id,
+               test1,
+               test2
+        FROM Board
+        WHERE id = #{boardId}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.example.mybatis.mapper.BoardVO">
+        INSERT INTO Board(id, test1, test2)
+        values (#{id}, #{test1}, #{test2});
+    </insert>
+
+    <update id="updateBoard" parameterType="com.example.mybatis.mapper.BoardVO">
+        UPDATE Board
+        SET test1= #{test1}
+          , test2 = #{test2}
+        WHERE id = #{boardId}
+    </update>
+
+    <!--테이블 row delete-->
+    <delete id="deleteBoardById">
+        DELETE
+        FROM Board
+        WHERE id = #{boardId}
+    </delete>
+
+</mapper>

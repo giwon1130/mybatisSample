@@ -1,4 +1,4 @@
-package com.example.mybatis.mapper.vo;
+package com.example.mybatis.mapper;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

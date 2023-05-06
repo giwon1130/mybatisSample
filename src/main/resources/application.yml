@@ -1,5 +1,5 @@
 server:
-  port: 28080
+  port: 8080
   servlet:
     session:
       timeout: 7200
@@ -13,32 +13,12 @@ spring:
     password: postgres
     platform: postgres
 
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        format_sql: true
-        default_batch_fetch_size: 100
-    database-platform:
-      org.hibernate.spatial.dialect.postgis.PostgisDialect
-
-  devtools:
-    restart:
-      enabled: false
-
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
-  servlet:
-    multipart:
-      max-file-size: 1000MB
-
-logging:
-  level:
-    org.hibernate.SQL: info
-    org.hibernate.type: info
-
-geometry:
-  srid: 3857
+# Mybatis 설정
+mybatis:
+  # default Package location - resultType의 Alias를 지정합니다.
+  type-aliases-package: com.example.mybatis.model
+  # mapper location - 바라 볼 xml 파일을 지정합니다.
+  mapper-locations: classpath:mapper/*.xml
+  # column name to camel case - 반환 받는 컬럼명을 CamelCase로 받는 설정을 합니다.
+  configuration:
+    map-underscore-to-camel-case: true
