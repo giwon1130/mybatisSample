@@ -46,7 +46,13 @@ public class BoardController {
     @GetMapping("main")
     public String selectBoardView(Model model) {
         model.addAttribute("title", "템플릿 화면");
-        return "board/boardPage";
+        return "index";
+    }
+
+    @GetMapping("hello")
+    public String hello(Model model) {
+        model.addAttribute("title", "템플릿 화면");
+        return "boardPage";
     }
 
     /**
