@@ -36,8 +36,8 @@
             </thead>
             <tbody>
             <tr th:each="board : ${boardList}">
-                <td><a href="item.html" th:href="@{/boards/{uid}(uid=${board.uid})}" th:text="${board.uid}">글 ID</a></td>
-                <td><a href="item.html" th:href="@{/boards/{uid}(uid=${board.uid})}" th:text="${board.subject}">제목</a></td>
+                <td><a href="item.html" th:href="@{/board/{uid}(uid=${board.uid})}" th:text="${board.uid}">글 ID</a></td>
+                <td><a href="item.html" th:href="@{/board/{uid}(uid=${board.uid})}" th:text="${board.subject}">제목</a></td>
                 <td th:text="${board.name}">작성자</td>
                 <td th:text="${board.viewcnt}">조회수</td>
                 <td th:text="${board.regdate}">등록일</td>

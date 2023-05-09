@@ -25,7 +25,7 @@
                viewcnt,
                regdate
         FROM Board
-        WHERE id = #{boardId}
+        WHERE uid = #{id}
     </select>
 
     <insert id="insertBoard" parameterType="com.example.mybatis.mapper.Board">
@@ -40,7 +40,7 @@
           , name = #{name}
           , viewcnt = #{viewcnt}
           , regdate = #{regdate}
-        WHERE uid = #{boardId}
+        WHERE uid = #{uid}
     </update>
 
     <!--테이블 row delete-->

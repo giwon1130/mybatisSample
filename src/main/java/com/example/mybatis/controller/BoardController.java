@@ -37,6 +37,7 @@ public class BoardController {
     }
 
 
+    //////////////////// MVC ////////////////////
     /**
      * [VIEW] Thymeleaf 화면 만을 출력하는 함수
      *
@@ -51,11 +52,20 @@ public class BoardController {
         return "index";
     }
 
+    @GetMapping("{boardId}")
+    public String selectTemplateById(Model model, @PathVariable Integer boardId) {
+        Board result = boardService.selectBoardById(boardId);
+        model.addAttribute("boardInfo", result);
+        return "boardView";
+    }
+
     @GetMapping("hello")
     public String hello(Model model) {
         model.addAttribute("title", "템플릿 화면");
         return "boardPage";
     }
+
+    //////////////////// AJAX ////////////////////
 
     /**
      * [API] 템플릿 리스트 출력 함수
@@ -71,15 +81,15 @@ public class BoardController {
     /**
      * [API] 템플릿 아이디 별 조회
      *
-     * @param board 템플릿 생성 데이터
+     * @param boardId 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
-
-    @GetMapping("selectBoardById")
-    public ResponseEntity<Board> selectTemplateById(@RequestBody Board board) {
-        Board result = boardService.selectBoardById(board.getUid());
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
+//    @ResponseBody
+//    @GetMapping("{boardId}")
+//    public ResponseEntity<Board> selectTemplateById(@PathVariable Integer boardId) {
+//        Board result = boardService.selectBoardById(boardId);
+//        return new ResponseEntity<>(result, HttpStatus.OK);
+//    }
 
     /**
      * [API] 템플릿 생성 함수
@@ -87,7 +97,8 @@ public class BoardController {
      * @param board 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
-    @PutMapping("insertBoard")
+    @ResponseBody
+    @PostMapping("")
     public ResponseEntity<Integer> insertBoard(@RequestBody Board board) {
         Integer result = boardService.insertBoard(board);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -99,7 +110,8 @@ public class BoardController {
      * @param board 템플릿 생성 데이터
      * @return ApiResponseWrapper<Board> : 응답 결과 및 응답 코드 반환
      */
-    @PatchMapping("updateBoard")
+    @ResponseBody
+    @PatchMapping("")
     public ResponseEntity<Integer> updateBoard(@RequestBody Board board) {
         Integer result = boardService.updateBoard(board);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -108,12 +120,13 @@ public class BoardController {
     /**
      * [API] 템플릿 삭제 함수
      *
-     * @param board 템플릿 생성 데이터
+     * @param boardId 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
-    @DeleteMapping("deleteBoard")
-    public ResponseEntity<Integer> deleteBoard(@RequestBody Board board) {
-        Integer result = boardService.deleteBoardById(board.getUid());
+    @ResponseBody
+    @DeleteMapping("{boardId}")
+    public ResponseEntity<Integer> deleteBoard(@PathVariable Integer boardId) {
+        Integer result = boardService.deleteBoardById(boardId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
