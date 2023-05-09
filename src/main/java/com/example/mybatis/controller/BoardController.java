@@ -1,6 +1,6 @@
 package com.example.mybatis.controller;
 
-import com.example.mybatis.mapper.BoardVO;
+import com.example.mybatis.mapper.Board;
 import com.example.mybatis.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -46,6 +46,8 @@ public class BoardController {
     @GetMapping("main")
     public String selectBoardView(Model model) {
         model.addAttribute("title", "템플릿 화면");
+        List<Board> boardList = boardService.selectBoardList();
+        model.addAttribute("boardList", boardList);
         return "index";
     }
 
@@ -61,57 +63,57 @@ public class BoardController {
      * @return ApiResponseWrapper<List < BoardVO>> : 응답 결과 및 응답 코드 반환
      */
     @GetMapping("boardList")
-    public ResponseEntity<List<BoardVO>> selectBoardList() {
-        List<BoardVO> resultList = boardService.selectBoardList();
+    public ResponseEntity<List<Board>> selectBoardList() {
+        List<Board> resultList = boardService.selectBoardList();
         return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
 
     /**
      * [API] 템플릿 아이디 별 조회
      *
-     * @param boardVO 템플릿 생성 데이터
+     * @param board 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
 
     @GetMapping("selectBoardById")
-    public ResponseEntity<BoardVO> selectTemplateById(@RequestBody BoardVO boardVO) {
-        BoardVO result = boardService.selectBoardById(boardVO.getId());
+    public ResponseEntity<Board> selectTemplateById(@RequestBody Board board) {
+        Board result = boardService.selectBoardById(board.getUid());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**
      * [API] 템플릿 생성 함수
      *
-     * @param boardVO 템플릿 생성 데이터
+     * @param board 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
     @PutMapping("insertBoard")
-    public ResponseEntity<Integer> insertBoard(@RequestBody BoardVO boardVO) {
-        Integer result = boardService.insertBoard(boardVO);
+    public ResponseEntity<Integer> insertBoard(@RequestBody Board board) {
+        Integer result = boardService.insertBoard(board);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**
      * [API] 템플릿 수정 함수
      *
-     * @param boardVO 템플릿 생성 데이터
-     * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
+     * @param board 템플릿 생성 데이터
+     * @return ApiResponseWrapper<Board> : 응답 결과 및 응답 코드 반환
      */
     @PatchMapping("updateBoard")
-    public ResponseEntity<Integer> updateBoard(@RequestBody BoardVO boardVO) {
-        Integer result = boardService.updateBoard(boardVO);
+    public ResponseEntity<Integer> updateBoard(@RequestBody Board board) {
+        Integer result = boardService.updateBoard(board);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     /**
      * [API] 템플릿 삭제 함수
      *
-     * @param boardVO 템플릿 생성 데이터
+     * @param board 템플릿 생성 데이터
      * @return ApiResponseWrapper<BoardVO> : 응답 결과 및 응답 코드 반환
      */
     @DeleteMapping("deleteBoard")
-    public ResponseEntity<Integer> deleteBoard(@RequestBody BoardVO boardVO) {
-        Integer result = boardService.deleteBoardById(boardVO.getId());
+    public ResponseEntity<Integer> deleteBoard(@RequestBody Board board) {
+        Integer result = boardService.deleteBoardById(board.getUid());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

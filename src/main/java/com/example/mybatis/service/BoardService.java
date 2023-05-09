@@ -1,6 +1,6 @@
 package com.example.mybatis.service;
 
-import com.example.mybatis.mapper.BoardVO;
+import com.example.mybatis.mapper.Board;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import java.util.List;
  * @since 2022.09.30
  */
 public interface BoardService {
-    List<BoardVO> selectBoardList();
+    List<Board> selectBoardList();
 
-    BoardVO selectBoardById(Integer boardId);
+    Board selectBoardById(Integer boardId);
 
-    int insertBoard(BoardVO boardVO);
+    int insertBoard(Board board);
 
-    int updateBoard(BoardVO boardVO);
+    int updateBoard(Board board);
 
     int deleteBoardById(Integer boardId);
 }

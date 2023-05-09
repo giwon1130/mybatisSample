@@ -1,7 +1,7 @@
 package com.example.mybatis.service.impl;
 
 import com.example.mybatis.mapper.BoardMapper;
-import com.example.mybatis.mapper.BoardVO;
+import com.example.mybatis.mapper.Board;
 import com.example.mybatis.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
@@ -36,7 +36,7 @@ public class BoardServiceImpl implements BoardService {
      * @return List<BoardVO> 반환값
      */
     @Transactional(readOnly = true)
-    public List<BoardVO> selectBoardList() {
+    public List<Board> selectBoardList() {
         BoardMapper bm = sqlSession.getMapper(BoardMapper.class);
         return bm.selectBoardList();
     }
@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
      * @return BoardVO 반환 값
      */
     @Transactional(readOnly = true)
-    public BoardVO selectBoardById(Integer boardId) {
+    public Board selectBoardById(Integer boardId) {
         BoardMapper bm = sqlSession.getMapper(BoardMapper.class);
         return bm.selectBoardById(boardId);
     }
@@ -56,25 +56,25 @@ public class BoardServiceImpl implements BoardService {
     /**
      * Template INSERT
      *
-     * @param boardVO 저장 할 값
+     * @param board 저장 할 값
      * @return BoardVO 결과값 반환
      */
     @Transactional
-    public int insertBoard(BoardVO boardVO) {
+    public int insertBoard(Board board) {
         BoardMapper bm = sqlSession.getMapper(BoardMapper.class);
-        return bm.insertBoard(boardVO);
+        return bm.insertBoard(board);
     }
 
     /**
      * Template Update
      *
-     * @param boardVO Update Value
+     * @param board Update Value
      * @return BoardVO 결과값 반환
      */
     @Transactional
-    public int updateBoard(BoardVO boardVO) {
+    public int updateBoard(Board board) {
         BoardMapper bm = sqlSession.getMapper(BoardMapper.class);
-        return bm.updateBoard(boardVO);
+        return bm.updateBoard(board);
     }
 
     /**

@@ -12,13 +12,13 @@ import java.util.List;
  */
 @Repository
 public interface BoardMapper {
-    List<BoardVO> selectBoardList();
+    List<Board> selectBoardList();
 
-    BoardVO selectBoardById(Integer id);
+    Board selectBoardById(Integer id);
 
-    int insertBoard(BoardVO boardVO);
+    int insertBoard(Board board);
 
-    int updateBoard(BoardVO boardVO);
+    int updateBoard(Board board);
 
     int deleteBoardById(Integer Id);
 }

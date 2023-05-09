@@ -7,38 +7,47 @@
 -->
 <mapper namespace="com.example.mybatis.mapper.BoardMapper">
 
-    <select id="selectBoardList" resultType="com.example.mybatis.mapper.BoardVO">
-        SELECT id,
-               test1,
-               test2
+    <select id="selectBoardList" resultType="com.example.mybatis.mapper.Board">
+        SELECT uid,
+               subject,
+               contents,
+               name,
+               viewcnt,
+               regdate
         FROM Board;
     </select>
 
-    <select id="selectBoardById" resultType="com.example.mybatis.mapper.BoardVO">
-        SELECT id,
-               test1,
-               test2
+    <select id="selectBoardById" resultType="com.example.mybatis.mapper.Board">
+        SELECT uid,
+               subject,
+               contents,
+               name,
+               viewcnt,
+               regdate
         FROM Board
         WHERE id = #{boardId}
     </select>
 
-    <insert id="insertBoard" parameterType="com.example.mybatis.mapper.BoardVO">
-        INSERT INTO Board(id, test1, test2)
-        values (#{id}, #{test1}, #{test2});
+    <insert id="insertBoard" parameterType="com.example.mybatis.mapper.Board">
+        INSERT INTO Board(uid, subject, contents, name, viewcnt, regdate)
+        values (#{uid}, #{subject}, #{contents}, #{name},#{viewcnt}, #{regdate});
     </insert>
 
-    <update id="updateBoard" parameterType="com.example.mybatis.mapper.BoardVO">
+    <update id="updateBoard" parameterType="com.example.mybatis.mapper.Board">
         UPDATE Board
-        SET test1= #{test1}
-          , test2 = #{test2}
-        WHERE id = #{boardId}
+        SET subject= #{subject}
+          , contents = #{contents}
+          , name = #{name}
+          , viewcnt = #{viewcnt}
+          , regdate = #{regdate}
+        WHERE uid = #{boardId}
     </update>
 
     <!--테이블 row delete-->
     <delete id="deleteBoardById">
         DELETE
         FROM Board
-        WHERE id = #{boardId}
+        WHERE uid = #{boardId}
     </delete>
 
 </mapper>
